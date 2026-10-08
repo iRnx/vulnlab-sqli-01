@@ -1,0 +1,18 @@
+{% extends "lab/base.html" %}
+{% block title %}Auditoria{% endblock %}
+{% block content %}
+<h1>Notas de auditoria</h1>
+<form method="get" class="panel">
+    <label for="q">Pesquisar nota</label>
+    <input id="q" name="q" value="{{ term }}" placeholder="Ex.: backup">
+    <button type="submit">Pesquisar</button>
+</form>
+{% if error %}<div class="db-error">{{ error }}</div>{% endif %}
+<div class="results">
+    {% for row in rows %}
+        <article class="result"><h3>{{ row.title }}</h3><p>{{ row.content }}</p></article>
+    {% empty %}
+        {% if term %}<p>Nenhuma nota encontrada.</p>{% endif %}
+    {% endfor %}
+</div>
+{% endblock %}

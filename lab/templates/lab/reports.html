@@ -1,0 +1,18 @@
+{% extends "lab/base.html" %}
+{% block title %}Relatórios{% endblock %}
+{% block content %}
+<h1>Relatório regional</h1>
+<form method="get" class="panel">
+    <label for="region">Região</label>
+    <input id="region" name="region" value="{{ region }}" placeholder="Ex.: sudeste">
+    <button type="submit">Gerar</button>
+</form>
+{% if error %}<div class="db-error">{{ error }}</div>{% endif %}
+<div class="results">
+    {% for row in rows %}
+        <article class="result"><h3>{{ row.product }}</h3><p><strong>Região:</strong> {{ row.region }}</p><p><strong>Valor:</strong> R$ {{ row.amount }}</p><p>{{ row.details }}</p></article>
+    {% empty %}
+        {% if region %}<p>Nenhum dado encontrado.</p>{% endif %}
+    {% endfor %}
+</div>
+{% endblock %}

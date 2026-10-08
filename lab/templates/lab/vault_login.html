@@ -1,0 +1,18 @@
+{% extends "lab/base.html" %}
+{% block title %}Cofre{% endblock %}
+{% block content %}
+<h1>Cofre administrativo</h1>
+<form method="post" class="panel">
+    {% csrf_token %}
+    <label for="username">Usuário</label>
+    <input id="username" name="username">
+    <label for="password">Senha</label>
+    <input id="password" name="password" type="password">
+    <button type="submit">Autenticar</button>
+</form>
+{% if authenticated %}
+    <div class="result"><h3>Acesso autorizado</h3><div class="flag">{{ flag }}</div></div>
+{% elif request.method == "POST" %}
+    <p>Credenciais inválidas.</p>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends "lab/base.html" %}
+{% block title %}Clientes{% endblock %}
+{% block content %}
+<h1>Consulta de clientes</h1>
+<form method="get" class="panel">
+    <label for="reference">Referência</label>
+    <input id="reference" name="reference" value="{{ reference }}" placeholder="Ex.: CUST-1001">
+    <button type="submit">Consultar</button>
+</form>
+{% if error %}<div class="db-error">{{ error }}</div>{% endif %}
+<div class="results">
+    {% for row in rows %}
+        <article class="result"><h3>{{ row.name }}</h3><p><strong>Referência:</strong> {{ row.reference }}</p><p><strong>E-mail:</strong> {{ row.email }}</p><p><strong>Cidade:</strong> {{ row.city }}</p><p>{{ row.notes }}</p></article>
+    {% empty %}
+        {% if reference %}<p>Nenhum cliente encontrado.</p>{% endif %}
+    {% endfor %}
+</div>
+{% endblock %}

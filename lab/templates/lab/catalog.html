@@ -1,0 +1,18 @@
+{% extends "lab/base.html" %}
+{% block title %}Catálogo{% endblock %}
+{% block content %}
+<h1>Catálogo</h1>
+<form method="get" class="panel">
+    <label for="q">Produto</label>
+    <input id="q" name="q" value="{{ term }}" placeholder="Ex.: OrbitBook">
+    <button type="submit">Pesquisar</button>
+</form>
+{% if error %}<div class="db-error">{{ error }}</div>{% endif %}
+<div class="results">
+    {% for row in rows %}
+        <article class="result"><h3>{{ row.name }}</h3><small>{{ row.category }}</small><p>{{ row.description }}</p></article>
+    {% empty %}
+        {% if term %}<p>Nenhum produto encontrado.</p>{% endif %}
+    {% endfor %}
+</div>
+{% endblock %}

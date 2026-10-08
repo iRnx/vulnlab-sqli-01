@@ -1,0 +1,18 @@
+{% extends "lab/base.html" %}
+{% block title %}Tickets{% endblock %}
+{% block content %}
+<h1>Central de tickets</h1>
+<form method="get" class="panel">
+    <label for="status">Status</label>
+    <input id="status" name="status" value="{{ status }}" placeholder="Ex.: open">
+    <button type="submit">Filtrar</button>
+</form>
+{% if error %}<div class="db-error">{{ error }}</div>{% endif %}
+<div class="results">
+    {% for row in rows %}
+        <article class="result"><h3>{{ row.title }}</h3><p><strong>Status:</strong> {{ row.status }} · <strong>Prioridade:</strong> {{ row.priority }}</p><p>{{ row.body }}</p></article>
+    {% empty %}
+        {% if status %}<p>Nenhum ticket encontrado.</p>{% endif %}
+    {% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends "lab/base.html" %}
+{% block title %}VulnLab — SQL Injection 01{% endblock %}
+{% block content %}
+<section class="hero">
+    <span class="eyebrow">TRILHA SQL INJECTION</span>
+    <h1>OrbitDesk — Lab 01</h1>
+    <p>Uma aplicação interna de suporte, catálogo e operações. Seu trabalho é mapear a superfície, criar hipóteses e encontrar as flags.</p>
+    <div class="progress-card"><strong>{{ progress.solved_count }}/{{ progress.total }}</strong><span>flags capturadas</span></div>
+</section>
+<section>
+    <h2>Aplicação</h2>
+    <div class="grid">
+        <a class="card" href="{% url 'lab:catalog' %}"><h3>Catálogo</h3><p>Pesquisa de produtos e equipamentos.</p></a>
+        <a class="card" href="{% url 'lab:customers' %}"><h3>Clientes</h3><p>Consulta rápida por referência.</p></a>
+        <a class="card" href="{% url 'lab:tickets' %}"><h3>Tickets</h3><p>Central de chamados e filtros.</p></a>
+        <a class="card" href="{% url 'lab:reports' %}"><h3>Relatórios</h3><p>Visão regional de operações.</p></a>
+        <a class="card" href="{% url 'lab:legacy_login' %}"><h3>Portal legado</h3><p>Área antiga mantida por compatibilidade.</p></a>
+        <a class="card" href="{% url 'lab:audit_notes' %}"><h3>Auditoria</h3><p>Pesquisa em notas operacionais.</p></a>
+        <a class="card" href="{% url 'lab:vault_login' %}"><h3>Cofre</h3><p>Autenticação do arquivo administrativo.</p></a>
+        <a class="card" href="{% url 'lab:inventory' %}"><h3>Inventário</h3><p>Consulta de estoque atual.</p></a>
+    </div>
+</section>
+<section class="training-box">
+    <h2>Modo treino</h2>
+    <p>Existem 6 pontos de SQL Injection. Nem toda entrada é vulnerável. Primeiro anote onde você <strong>suspeita</strong> que exista SQLi; só depois comece a validar.</p>
+</section>
+{% endblock %}

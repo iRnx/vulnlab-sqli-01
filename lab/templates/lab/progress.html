@@ -1,0 +1,20 @@
+{% extends "lab/base.html" %}
+{% block title %}Flags{% endblock %}
+{% block content %}
+<h1>Progresso</h1>
+<div class="progress-card large"><strong>{{ progress.solved_count }}/{{ progress.total }}</strong><span>flags capturadas</span></div>
+<div class="stage-grid">
+    {% for stage in progress.stages %}
+        <div class="stage {% if stage.solved %}solved{% endif %}">
+            <strong>Etapa {{ stage.number|stringformat:"02d" }}</strong>
+            {% if stage.solved %}<span>✓ encontrada</span>{% else %}<span>pendente</span>{% endif %}
+        </div>
+    {% endfor %}
+</div>
+<form method="post" class="panel">
+    {% csrf_token %}
+    <label for="flag">Enviar flag</label>
+    <input id="flag" name="flag" placeholder="flag{...}">
+    <button type="submit">Validar</button>
+</form>
+{% endblock %}

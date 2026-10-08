@@ -1,0 +1,19 @@
+{% extends "lab/base.html" %}
+{% block title %}Portal legado{% endblock %}
+{% block content %}
+<h1>Portal legado</h1>
+<form method="post" class="panel">
+    {% csrf_token %}
+    <label for="username">Usuário</label>
+    <input id="username" name="username">
+    <label for="password">Senha</label>
+    <input id="password" name="password" type="password">
+    <button type="submit">Entrar</button>
+</form>
+{% if error %}<div class="db-error">{{ error }}</div>{% endif %}
+{% if account %}
+    <div class="result"><h3>Autenticado</h3><p>Usuário: {{ account.username }}</p><p>Perfil: {{ account.role }}</p>{% if flag %}<div class="flag">{{ flag }}</div>{% endif %}</div>
+{% elif request.method == "POST" and not error %}
+    <p>Credenciais inválidas.</p>
+{% endif %}
+{% endblock %}
